@@ -2,7 +2,7 @@
 #ifdef RCT_NEW_ARCH_ENABLED
 
 #import <React/RCTTextInputComponentView.h>
-#import <react-native-markdown-text-input/RCTMarkdownUtils.h>
+#import <react-native-live-markdown/RCTMarkdownUtils.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, nullable, getter=getMarkdownUtils) RCTMarkdownUtils *markdownUtils;
 
 - (void)markdown__setAttributedString:(NSAttributedString *)attributedString;
+
+- (void)textInputDidChange;
 
 @end
 
