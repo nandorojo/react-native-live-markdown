@@ -21,7 +21,7 @@
 
 - (NSAttributedString *)parseMarkdown:(nullable NSAttributedString *)input
 {
-  RCTAssertMainQueue();
+  //RCTAssertMainQueue();
 
   if (input == nil) {
     return nil;
@@ -47,7 +47,12 @@
   JSValue *result = [function callWithArguments:@[inputString]];
   NSArray *ranges = [result toArray];
 
-  NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:inputString attributes:_backedTextInputView.defaultTextAttributes];
+    NSMutableAttributedString *attributedString;
+    if (_backedTextInputView != nil) {
+        attributedString = [[NSMutableAttributedString alloc] initWithString:inputString attributes:_backedTextInputView.defaultTextAttributes];
+    } else {
+        attributedString = [input mutableCopy];
+    }
   [attributedString beginEditing];
 
   // If the attributed string ends with underlined text, blurring the single-line input imprints the underline style across the whole string.
@@ -130,3 +135,5 @@
 }
 
 @end
+
+RCTMarkdownUtils *globalMarkdownUtils;

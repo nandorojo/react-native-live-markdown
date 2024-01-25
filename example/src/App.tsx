@@ -5,7 +5,7 @@ import {Button, Platform, StyleSheet, Text, View} from 'react-native';
 import {MarkdownTextInput} from '@expensify/react-native-live-markdown';
 import type {TextInput} from 'react-native';
 
-const DEFAULT_TEXT = ['Hello, *world*!', 'https://expensify.com', '# Lorem ipsum', '> Hello world', '`foo`', '```\nbar\n```', '@here', '@someone@swmansion.com'].join('\n');
+const DEFAULT_TEXT = ['# Hello world', '# Hello world', '# Hello world', '# Hello world'].join('\n');
 
 function isWeb() {
   return Platform.OS === 'web';
@@ -61,27 +61,6 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.platform}>
-        <Text>
-          Platform: {getPlatform()} {getPlatformVersion()}
-        </Text>
-        <Text>Bundle: {getBundle()}</Text>
-        {!isWeb() && (
-          <>
-            <Text>Architecture: {getArchitecture()}</Text>
-            <Text>RN version: {getReactNativeVersion()}</Text>
-            <Text>RN runtime: {getRuntime()}</Text>
-          </>
-        )}
-      </View>
-      {/* <Text>MarkdownTextInput singleline</Text>
-      <MarkdownTextInput
-        autoCapitalize="none"
-        value={value}
-        onChangeText={setValue}
-        style={styles.input}
-      /> */}
-      <Text>MarkdownTextInput multiline</Text>
       <MarkdownTextInput
         multiline
         autoCapitalize="none"
@@ -89,48 +68,8 @@ export default function App() {
         onChangeText={setValue}
         style={styles.input}
         ref={ref}
-      />
-      {/* <Text>TextInput singleline</Text>
-      <TextInput
-        autoCapitalize="none"
-        value={value}
-        onChangeText={setValue}
-        style={styles.input}
-      /> */}
-      {/* <Text>TextInput multiline</Text>
-      <TextInput
-        multiline
-        autoCapitalize="none"
-        value={value}
-        onChangeText={setValue}
-        style={styles.input}
-      /> */}
-      <Text style={styles.text}>{JSON.stringify(value)}</Text>
-      <Button
-        title="Focus"
-        onPress={() => {
-          if (!ref.current) {
-            return;
-          }
-          ref.current.focus();
-        }}
-      />
-      <Button
-        title="Blur"
-        onPress={() => {
-          if (!ref.current) {
-            return;
-          }
-          ref.current.blur();
-        }}
-      />
-      <Button
-        title="Reset"
-        onPress={() => setValue(DEFAULT_TEXT)}
-      />
-      <Button
-        title="Clear"
-        onPress={() => setValue('')}
+        autoFocus
+        markdownStyle={{link: {color: 'green'}}}
       />
     </View>
   );

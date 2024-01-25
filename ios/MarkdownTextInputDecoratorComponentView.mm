@@ -1,8 +1,6 @@
 // This guard prevent this file to be compiled in the old architecture.
 #ifdef RCT_NEW_ARCH_ENABLED
-#import <react/renderer/components/RNLiveMarkdownSpec/ComponentDescriptors.h>
-#import <react/renderer/components/RNLiveMarkdownSpec/Props.h>
-
+#import <react-native-live-markdown/MarkdownTextInputDecoratorViewComponentDescriptor.h>
 #import <react-native-live-markdown/MarkdownTextInputDecoratorComponentView.h>
 #import <react-native-live-markdown/MarkdownTextInputDecoratorView.h>
 #import <react-native-live-markdown/RCTMarkdownStyle.h>

@@ -116,12 +116,26 @@ Currently, `react-native-live-markdown` supports only [ExpensiMark](https://gith
 
 | Prop            | Type            | Default     | Note                                                                                                                                                                                                                   |
 | --------------- | --------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `markdownStyle` | `MarkdownStyle` | `undefined` | Adds custom styling to Markdown text. The provided value is merged with default style object. See [Styling](https://github.com/expensify/react-native-live-markdown/blob/main/README.md#styling) for more information. |
+| `markdownStyle` | `MarkdownStyle` | `undefined` | Adds custom styling to Markdown text. The provided value is merged with default style object. See [Styling](https://github.com/Expensify/react-native-live-markdown/blob/main/README.md#styling) for more information. |
 
 ## Compatibility
 
 `react-native-live-markdown` requires React Native 0.71 or newer.
 
+## Contributing
+
+See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+
 ## License
 
 MIT
+
+## Credits
+
+This project has been built by [Software Mansion](https://swmansion.com).
+
+[![swm](https://logo.swmansion.com/logo?color=white&variant=desktop&width=150&tag=react-native-reanimated-github 'Software Mansion')](https://swmansion.com)
+
+---
+
+Made with [create-react-native-library](https://github.com/callstack/react-native-builder-bob)

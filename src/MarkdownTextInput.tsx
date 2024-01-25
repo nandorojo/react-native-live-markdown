@@ -93,34 +93,31 @@ interface MarkdownTextInputProps extends TextInputProps {
 }
 
 const MarkdownTextInput = React.forwardRef<TextInput, MarkdownTextInputProps>((props, ref) => {
-  const IS_FABRIC = 'nativeFabricUIManager' in global;
+  // const IS_FABRIC = 'nativeFabricUIManager' in global;
 
   const markdownStyle = React.useMemo(() => processMarkdownStyle(props.markdownStyle), [props.markdownStyle]);
 
   return (
     <>
+      <MarkdownTextInputDecoratorViewNativeComponent markdownStyle={markdownStyle} />
       <TextInput
         {...props}
         ref={ref}
-      />
-      <MarkdownTextInputDecoratorViewNativeComponent
-        style={IS_FABRIC ? styles.farAway : styles.displayNone}
-        markdownStyle={markdownStyle}
       />
     </>
   );
 });
 
-const styles = StyleSheet.create({
-  displayNone: {
-    display: 'none',
-  },
-  farAway: {
-    position: 'absolute',
-    top: 1e8,
-    left: 1e8,
-  },
-});
+// const styles = StyleSheet.create({
+//   displayNone: {
+//     display: 'none',
+//   },
+//   farAway: {
+//     position: 'absolute',
+//     top: 1e8,
+//     left: 1e8,
+//   },
+// });
 
 export type {PartialMarkdownStyle as MarkdownStyle, MarkdownTextInputProps};
 
