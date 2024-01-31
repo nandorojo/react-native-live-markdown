@@ -3,9 +3,9 @@ import * as React from 'react';
 import {Button, Platform, StyleSheet, Text, View} from 'react-native';
 
 import {MarkdownTextInput} from '@expensify/react-native-live-markdown';
-import type {TextInput} from 'react-native';
+import {TextInput} from 'react-native';
 
-const DEFAULT_TEXT = ['Hello, *world*!', 'https://expensify.com', '# Lorem ipsum', '> Hello world', '`foo`', '```\nbar\n```', '@here', '@someone@swmansion.com'].join('\n');
+const DEFAULT_TEXT = ['bbb', 'ccc', 'ddd', 'eee', 'fff', 'ggg', 'bbb', 'ccc', 'ddd', 'eee', 'fff', 'ggg'].join('\n');
 
 function isWeb() {
   return Platform.OS === 'web';
@@ -59,6 +59,10 @@ export default function App() {
   // TODO: use MarkdownTextInput ref instead of TextInput ref
   const ref = React.useRef<TextInput>(null);
 
+  const onScroll = (e) => {
+    console.log(e.nativeEvent.contentOffset);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.platform}>
@@ -85,10 +89,11 @@ export default function App() {
       <MarkdownTextInput
         multiline
         autoCapitalize="none"
-        value={value}
-        onChangeText={setValue}
+        // value={value}
+        // onChangeText={setValue}
         style={styles.input}
         ref={ref}
+        onScroll={onScroll}
       />
       {/* <Text>TextInput singleline</Text>
       <TextInput
@@ -153,10 +158,11 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderWidth: 1,
     textAlignVertical: 'top',
+    maxHeight: 200,
   },
   text: {
     fontFamily: 'Courier New',
     marginTop: 10,
-    height: 100,
+    height: 200,
   },
 });

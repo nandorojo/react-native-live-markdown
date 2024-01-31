@@ -1,7 +1,7 @@
 #import <React/RCTUITextField.h>
 #import <react/debug/react_native_assert.h>
 
-#import <react-native-live-markdown/MarkdownLayoutManager.h>
+#import <react-native-live-markdown/MarkdownLayoutManagerDelegate.h>
 #import <react-native-live-markdown/MarkdownTextInputDecoratorView.h>
 #import <react-native-live-markdown/RCTBackedTextFieldDelegateAdapter+Markdown.h>
 #import <react-native-live-markdown/RCTUITextView+Markdown.h>
@@ -24,6 +24,7 @@
 #endif /* RCT_NEW_ARCH_ENABLED */
   __weak RCTBackedTextFieldDelegateAdapter *_adapter;
   __weak RCTUITextView *_textView;
+  MarkdownLayoutManagerDelegate *_delegate;
 }
 
 - (void)didMoveToWindow {
@@ -70,8 +71,13 @@
   } else if ([backedTextInputView isKindOfClass:[RCTUITextView class]]) {
     _textView = (RCTUITextView *)backedTextInputView;
     [_textView setMarkdownUtils:_markdownUtils];
-    object_setClass(_textView.layoutManager, [MarkdownLayoutManager class]);
-    [_textView.layoutManager setValue:_markdownUtils forKey:@"markdownUtils"];
+    if (@available(iOS 16.0, *)) {
+      // NSTextLayoutManager *textLayoutManager = _textView.textLayoutManager;
+      // _delegate = [[MarkdownLayoutManagerDelegate alloc] init];
+      // [textLayoutManager setDelegate:_delegate];
+    } else {
+      // Do nothing on earlier versions
+    }
   } else {
     react_native_assert(false && "Cannot enable Markdown for this type of TextInput.");
   }
@@ -87,10 +93,10 @@
   }
   if (_textView != nil) {
     [_textView setMarkdownUtils:nil];
-    if (_textView.layoutManager != nil && [object_getClass(_textView.layoutManager) isEqual:[MarkdownLayoutManager class]]) {
-      [_textView.layoutManager setValue:nil forKey:@"markdownUtils"];
-      object_setClass(_textView.layoutManager, [NSLayoutManager class]);
-    }
+//    if (_textView.layoutManager != nil && [object_getClass(_textView.layoutManager) isEqual:[MarkdownLayoutManager class]]) {
+//      [_textView.layoutManager setValue:nil forKey:@"markdownUtils"];
+//      object_setClass(_textView.layoutManager, [NSLayoutManager class]);
+//    }
   }
 }
 
